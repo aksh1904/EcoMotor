@@ -1,1 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Booking Confirmed</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eafbf0;
+      text-align: center;
+      padding: 50px;
+    }
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+    .container h2 {
+      color: #4CAF50;
+    }
+    .btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px;
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const booking = JSON.parse(localStorage.getItem("lastBooking"));
+      const output = booking
+        ? `You’ve booked ${booking.transport} to ${booking.destination} at ${booking.time}`
+        : 'No booking found';
+
+      document.getElementById("bookingDetails").innerText = output;
+      const utterance = new SpeechSynthesisUtterance(output);
+      window.speechSynthesis.speak(utterance);
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2>Booking Confirmed 🎉</h2>
+    <p id="bookingDetails">Loading...</p>
+    <a class="btn" href="home.html">Go Home</a>
+    <a class="btn" href="history.html">View History</a>
+  </div>
+</body>
+</html>
 
