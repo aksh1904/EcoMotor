@@ -293,6 +293,27 @@
         <!-- Book Now Button -->
         <a href="#" onclick="bookNow()" class="book-now">Book Now</a>
     </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const bookBtn = document.querySelector('.book-now');
+        if (bookBtn) {
+            bookBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                const selected = document.querySelector('.recommendation-card.selected');
+                if (!selected) return alert("Please select a transport option.");
+
+                const transport = selected.querySelector('h4')?.innerText || 'Unknown';
+                const destination = "67, AR Road, Chennai";
+                localStorage.setItem("lastBooking", JSON.stringify({
+                    transport,
+                    destination,
+                    time: new Date().toLocaleString()
+                }));
+                window.location.href = 'confirmation.html';
+            });
+        }
+    });
+</script>
 
 </body>
 </html>
