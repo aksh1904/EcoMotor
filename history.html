@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trip History</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px; }
+    .trip { background: white; padding: 15px; margin-bottom: 10px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const booking = JSON.parse(localStorage.getItem("lastBooking"));
+      const historyDiv = document.getElementById('history');
+
+      if (booking) {
+        historyDiv.innerHTML = `
+          <div class="trip">
+            <strong>${booking.transport}</strong> to ${booking.destination} <br/>
+            Time: ${booking.time}
+          </div>
+        `;
+      } else {
+        historyDiv.innerHTML = "<p>No bookings yet.</p>";
+      }
+    });
+  </script>
+</head>
+<body>
+  <h2>Your Trip History</h2>
+  <div id="history"></div>
+</body>
+</html>
